@@ -43,6 +43,14 @@ jobs:
       - name: Build Android APK
         run: |
           cd android
+          cat <<EOF >> app/build.gradle
+          dependencies {
+              constraints {
+                  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22")
+                  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22")
+              }
+          }
+          EOF
           chmod +x gradlew
           ./gradlew assembleDebug
 
